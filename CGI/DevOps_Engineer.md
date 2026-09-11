@@ -86,6 +86,27 @@ If multiple teams need to use the same variables in Jenkins, I avoid hardcoding 
 
 --------------------------------------------------------------------------------------------
 - How do you call variables in a Jenkins pipeline?
+--------------------------------------------------------------------------------------------
+**Interview Answer**
+In Jenkins, variables can be defined using the environment block, build parameters, or Groovy variables. We call them using ${VARIABLE_NAME}. This helps avoid hardcoding values and makes pipelines reusable.
+**Example:**
+pipeline {
+    agent any
+
+    environment {
+        AWS_REGION = "ap-south-1"
+    }
+
+    stages {
+        stage('Deploy') {
+            steps {
+                echo "Deploying to ${AWS_REGION}"
+            }
+        }
+    }
+}
+
+---------------------------------------------------------------------------------------------
 - What is a Jenkins agent?
 - Sample Dockerfile question from the interview.
 - Troubleshooting
