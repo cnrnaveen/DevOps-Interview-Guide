@@ -108,6 +108,17 @@ pipeline {
 
 ---------------------------------------------------------------------------------------------
 - What is a Jenkins agent?
+- -------------------------------------------------------------------------------------------
+A Jenkins Agent is a machine (computer, VM, container, or server) that performs the actual work assigned by the Jenkins Controller (previously called Master).
+
+Think of it like this:
+
+Jenkins Controller (Master) = Manager
+Jenkins Agent = Employee
+
+The manager assigns tasks, and the employee does the work.
+
+--------------------------------------------------------------------------------------------
 - Sample Dockerfile question from the interview.
 - Troubleshooting
 - Database connection from a pod is not working only for you. How will you troubleshoot?
