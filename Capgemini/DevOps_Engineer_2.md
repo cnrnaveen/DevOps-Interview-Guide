@@ -5,7 +5,75 @@
 **Ansible**
 
 1. What is an Ansible playbook?
+--------------------------------------------------------------------------------------
+An Ansible Playbook is a YAML file that contains a list of tasks Ansible should perform on one or more servers.
+---
+- name: Deploy Application
+  hosts: webservers
+  become: yes
+
+  vars:
+    app_name: nginx
+
+  tasks:
+  - name: Install Package
+    apt:
+      name: "{{ app_name }}"
+      state: present
+
+  - name: Start Service
+    service:
+      name: "{{ app_name }}"
+      state: started
+
+  **Run: ansible-playbook deploy.yml**
+**This will:**
+Connect to all webservers.
+Install Nginx.
+Start the Nginx service.
+Use the variable app_name wherever needed.
+**Easy way to remember**
+Inventory = List of servers.
+Playbook = List of tasks to perform.
+Task = Single action (install package, copy file, restart service).
+Variable = Reusable value ({{ app_name }}).
+ansible-playbook = Command that executes the playbook.
+
+--------------------------------------------------------------------------------------
 2. How to install Ansible on Ubuntu and RedHat, and start services?
+--------------------------------------------------------------------------------------
+Install Ansible on Ubuntu
+**Step 1:** Update packages
+sudo apt update
+**Step 2: Install Ansible**
+sudo apt install ansible -y
+**Step 3:** Verify installation
+ansible --version
+Example output:ansible [core 2.x.x]
+
+Install Ansible on Red Hat / RHEL
+sudo dnf install epel-release -y
+sudo dnf install ansible -y
+
+**Start a Service Using Ansible**
+Suppose you want to start Nginx.
+Playbook
+---
+- name: Start Nginx Service
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+ansible-playbook start-nginx.yml
+
+state: stopped
+state: restarted
+
+---------------------------------------------------------------------------------------
 3. How to create 3 users and map them to prod, task, and QA groups in a single task?
 4. How to include and input parameters in a playbook?
 5. What are Ansible roles?
